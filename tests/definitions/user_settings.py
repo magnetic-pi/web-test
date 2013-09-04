@@ -6,9 +6,19 @@ import random
 import string
 import os
 
-count = 22
-username = 'Tester McTesterson'
-email = 'tester%d@weebly.com' % count
-old_email = 'tester18@weebly.com' 
-password = "W33bly!-13"
+
+f = open('counter.txt', 'r')
+i = f.read()
+n = int(i)+1
+f = open('counter.txt', 'w')
+s = str(n)
+f.write(s)
+count = n
+
+username = 'Troy Mcclure'
+email = 'weqatester%d@weebly.com' % count
+print email
+old_email = 'weqatester12@weebly.com'
+print old_email
+password = 'W33bly!-13'
 sel_domain = "inttesting%d" % count
