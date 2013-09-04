@@ -5,6 +5,8 @@ from time import sleep
 import os
 import glob
 
+#This file should be ran if you are using sauce labs to test in parallel.
+
 os.chdir("./tests")
 fileslist = glob.glob('*_test.py')
 j=0

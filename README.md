@@ -23,6 +23,7 @@ pip
 	
     python -m unittest <testname>
 
-5. To run the entire suite of tests, cd to web-test root and execute the runAll.py file.
+5. To run the entire suite of tests, cd to web-test root and execute the runAll.py file. This should only be ran if the testing environment
+is set up for parallel testing with sauce labs.
 
     python runAll.py

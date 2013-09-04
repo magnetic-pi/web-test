@@ -6,8 +6,9 @@ import random
 import string
 import os
 
-count = 0
+count = 19
 username = 'Tester McTesterson'
-email = 'tester13@weebly.com'
+email = 'tester%d@weebly.com' % count
+old_email = 'tester18@weebly.com' 
 password = "W33bly!-13"
-sel_domain = "inttesting13"
+sel_domain = "inttesting%d" % count
