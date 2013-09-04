@@ -13,23 +13,23 @@ import unittest
 class RegisterTest (unittest.TestCase):
 	
     def setUp(self):
-	self.username = definitions.user_settings.username
-	self.email    = definitions.user_settings.old_email
-	self.password = definitions.user_settings.password
+        self.username = definitions.user_settings.username
+        self.email    = definitions.user_settings.old_email
+        self.password = definitions.user_settings.password
         self.domain   = definitions.user_settings.sel_domain
-	self.driver   = definitions.test_settings.driver
-	self.url      = definitions.test_settings.baseUrl
-	self.waitTime = definitions.test_settings.waitTime
-	print self.driver
-	print self.url
-	print self.username
+        self.driver   = definitions.test_settings.driver
+        self.url      = definitions.test_settings.baseUrl
+        self.waitTime = definitions.test_settings.waitTime
+        print self.driver
+        print self.url
+        print self.username
 
     def test_Register(self):
 	print "Login and Logout Test"
         #print "register"
         wait = WebDriverWait(self.driver, self.waitTime)
     
-        self.driver.get('http://www.weebly.com/')
+        self.driver.get(self.url)
         wait.until(EC.element_to_be_clickable((By.ID, 'login-button'))).click()
         wait.until(EC.element_to_be_clickable((By.ID, 'weebly-username'))).click()
         wait.until(EC.element_to_be_clickable((By.ID, 'weebly-password'))).click()

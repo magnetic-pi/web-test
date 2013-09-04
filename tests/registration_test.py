@@ -13,23 +13,22 @@ import unittest
 class RegisterTest (unittest.TestCase):
 	
     def setUp(self):
-	self.username = definitions.user_settings.username
-	self.email    = definitions.user_settings.email
-	self.password = definitions.user_settings.password
+        self.username = definitions.user_settings.username
+        self.email    = definitions.user_settings.email
+        self.password = definitions.user_settings.password
         self.domain   = definitions.user_settings.sel_domain
-	self.driver   = definitions.test_settings.driver
-	self.url      = definitions.test_settings.baseUrl
-	self.waitTime = definitions.test_settings.waitTime
-	#print self.driver
-	#print self.url
-	#print self.username
+        self.driver   = definitions.test_settings.driver
+        self.url      = definitions.test_settings.baseUrl
+        self.waitTime = definitions.test_settings.waitTime
+        #print self.driver
+        #print self.url
+        #print self.username
 
     def test_Register(self):
-	print "Registration test is commencing"
+        print "Registration test is commencing"
         #print "register"
         wait = WebDriverWait(self.driver, self.waitTime)
-    
-        self.driver.get('http://www.weebly.com/')
+        self.driver.get(self.url)
         wait.until(EC.element_to_be_clickable((By.ID, 'weebly-name'))).click()
         wait.until(EC.element_to_be_clickable((By.ID, 'weebly-email'))).click()
         wait.until(EC.element_to_be_clickable((By.ID, 'weebly-new-password'))).click()
@@ -43,9 +42,9 @@ class RegisterTest (unittest.TestCase):
         submitReg.click()
         wait.until(EC.presence_of_element_located((By.ID, 'choose-theme')))
         theme = self.driver.find_element_by_xpath("//ul[@id='w-theme-list']/li[2]/div/img")
-	#print theme
+	    #print theme
         hover = ActionChains(self.driver).move_to_element(theme).perform()
-	#print hover
+	    #print hover
         wait.until(EC.element_to_be_clickable((By.XPATH, '//li[2]/div/div/div/button'))).click()
         #sel_ent = self.driver.find_element_by_xpath("//ul[@id='w-theme-list']/li[2]/div/div/div/button")
         #sel_ent.click()
@@ -60,5 +59,5 @@ class RegisterTest (unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))).click()
 
     def tearDown(self):
-	print "The test has ended"
+        print "The test has ended"
         self.driver.quit()
