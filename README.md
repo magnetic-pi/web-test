@@ -3,6 +3,7 @@ web-test
 
 ##Requirements
 python
+
 pip
 
 ##Getting Started
@@ -22,6 +23,6 @@ pip
 	
     python -m unittest <testname>
 
-5. To run the entire suite of tests, cd to /tests and execute the runAll.py file.
+5. To run the entire suite of tests, cd to web-test root and execute the runAll.py file.
 
     python runAll.py
