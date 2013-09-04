@@ -13,9 +13,9 @@ waitTime = 20
 #This is required for testing with Chrome.
 chrome_driver = './definitions/chromedriver'
 os.environ["webdriver.chrome.driver"] = chrome_driver
-#driver = webdriver.Chrome(chrome_driver)
+driver = webdriver.Chrome(chrome_driver)
 
-driver = webdriver.Firefox()
+#driver = webdriver.Firefox()
 
 # To quickly test the driver uncomment the following lines and run python test_settings.pu
 #driver.get("http://stackoverflow.com")
