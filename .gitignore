@@ -22,7 +22,7 @@ lib64
 # Installer logs
 pip-log.txt
 libpeerconnection.log
-cromedriver,log
+cromedriver.log
 
 # Unit test / coverage reports
 .coverage
@@ -36,3 +36,4 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+.DS_Store
