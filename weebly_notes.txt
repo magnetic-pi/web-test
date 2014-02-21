@@ -1,8 +1,0 @@
-Weebly notes
-==============
-
-CDN take forever to process.
-Login button missing ID. Stress importance of ID's.
-	* Show him working chrome test and failing firefox test.
-
-Clicking submit button after login without any valid inputs allows passthrough.

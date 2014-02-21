@@ -18,7 +18,7 @@ class RegisterTest (unittest.TestCase):
         self.password = definitions.user_settings.password
         self.domain   = definitions.user_settings.sel_domain
         self.driver   = definitions.test_settings.driver
-        self.url      = definitions.test_settings.baseUrl
+        self.url      = "www.google.com"
         self.waitTime = definitions.test_settings.waitTime
         #print self.driver
         #print self.url
