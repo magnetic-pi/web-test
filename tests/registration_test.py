@@ -35,7 +35,7 @@ class RegisterTest (unittest.TestCase):
         Username = self.driver.find_element_by_id('weebly-name')
         Username.send_keys(self.username)
         print self.username
-	    Useremail = self.driver.find_element_by_id('weebly-email')
+        Useremail = self.driver.find_element_by_id('weebly-email')
         Useremail.send_keys(self.email)
         print self.email
 	    Password = self.driver.find_element_by_id('weebly-new-password')
