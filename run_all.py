@@ -16,7 +16,4 @@ for i in fileslist:
 #print fileslist
 
 for i in fileslist:
-    def filename():
-        unittest.main(module = 'tests.' + i)
-    Thread(target=filename).start()
-    sleep(2)
+    unittest.main(module = 'tests.' + i)
