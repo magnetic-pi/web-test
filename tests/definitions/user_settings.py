@@ -9,7 +9,7 @@ import os
 
 f = open('counter.txt', 'r')
 i = f.read()
-n = int(i)+1
+n = int(i) + 1
 f = open('counter.txt', 'w')
 s = str(n)
 f.write(s)

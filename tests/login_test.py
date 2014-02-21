@@ -12,13 +12,14 @@ import unittest
 
 
 class RegisterTest(unittest.TestCase):
+
     def setUp(self):
         self.username = definitions.user_settings.username
-        self.email    = definitions.user_settings.old_email
+        self.email = definitions.user_settings.old_email
         self.password = definitions.user_settings.password
-        self.domain   = definitions.user_settings.sel_domain
-        self.driver   = definitions.test_settings.driver
-        self.url      = definitions.test_settings.baseUrl
+        self.domain = definitions.user_settings.sel_domain
+        self.driver = definitions.test_settings.driver
+        self.url = definitions.test_settings.baseUrl
         self.waitTime = definitions.test_settings.waitTime
         print self.driver
         print self.url
@@ -26,24 +27,29 @@ class RegisterTest(unittest.TestCase):
 
     def test_Register(self):
         print "Login and Logout Test"
-        #print "register"
+        # print "register"
         wait = WebDriverWait(self.driver, self.waitTime)
-    
+
         self.driver.get(self.url)
         wait.until(EC.element_to_be_clickable((By.ID, 'login-button'))).click()
-        wait.until(EC.element_to_be_clickable((By.ID, 'weebly-username'))).click()
-        wait.until(EC.element_to_be_clickable((By.ID, 'weebly-password'))).click()
+        wait.until(
+            EC.element_to_be_clickable((By.ID, 'weebly-username'))).click()
+        wait.until(
+            EC.element_to_be_clickable((By.ID, 'weebly-password'))).click()
         Username = self.driver.find_element_by_id('weebly-username')
         Username.send_keys(self.email)
         Password = self.driver.find_element_by_id('weebly-password')
         Password.send_keys(self.password)
         try:
-	    wait.until(EC.element_to_be_clickable((By.XPATH, "//form[@id='weebly-login']/p[4]/input"))).click()
-            wait.until(EC.element_to_be_clickable((By.ID, 'site-types-never'))).click()
+            wait.until(EC.element_to_be_clickable(
+                (By.XPATH, "//form[@id='weebly-login']/p[4]/input"))).click()
+            wait.until(
+                EC.element_to_be_clickable((By.ID, 'site-types-never'))).click()
         except:
-	    print "The elements do not exist"
-            wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))).click()
+            print "The elements do not exist"
+            wait.until(
+                EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))).click()
 
     def tearDown(self):
-	print "The test has ended"
+        print "The test has ended"
         self.driver.quit()
