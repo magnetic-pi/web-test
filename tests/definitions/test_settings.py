@@ -22,4 +22,3 @@ driver = webdriver.Chrome(chrome_driver)
 
 #driver.get("http://stackoverflow.com")
 #driver.quit()
-

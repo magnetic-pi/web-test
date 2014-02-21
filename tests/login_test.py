@@ -10,8 +10,8 @@ import definitions.user_settings
 import definitions.test_settings
 import unittest
 
-class RegisterTest (unittest.TestCase):
-	
+
+class RegisterTest(unittest.TestCase):
     def setUp(self):
         self.username = definitions.user_settings.username
         self.email    = definitions.user_settings.old_email
