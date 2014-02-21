@@ -35,13 +35,13 @@ class RegisterTest (unittest.TestCase):
         Username = self.driver.find_element_by_id('weebly-name')
         Username.send_keys(self.username)
         print self.username
-	Useremail = self.driver.find_element_by_id('weebly-email')
+	    Useremail = self.driver.find_element_by_id('weebly-email')
         Useremail.send_keys(self.email)
         print self.email
-	Password = self.driver.find_element_by_id('weebly-new-password')
+	    Password = self.driver.find_element_by_id('weebly-new-password')
         Password.send_keys(self.password)
         print self.password
-	submitReg = self.driver.find_element_by_id('signup-button-default')
+        submitReg = self.driver.find_element_by_id('signup-button-default')
         submitReg.click()
         wait.until(EC.presence_of_element_located((By.ID, 'choose-theme')))
         theme = self.driver.find_element_by_xpath("//ul[@id='w-theme-list']/li[2]/div/img")
