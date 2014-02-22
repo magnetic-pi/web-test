@@ -15,5 +15,5 @@ for i in fileslist:
     j += 1
 # print fileslist
 
-for i in fileslist:
-    unittest.main(module='tests.' + i)
+for f in fileslist:
+    unittest.main(module='tests.' + f)
