@@ -10,11 +10,11 @@ pip
 
     virtualenv func_test
 
-2. CD into the virtualenv that was just created. Clone the repo into the vrtualenv:
+2. Change directories into the virtualenv that was just created. Clone the repo into the vrtualenv:
 
     git clone https://github.com/jcostello84/web-test.git
 
-3. CD to the web-test directory.
+3. Change directories into the web-test directory.
 
     cd web-test/
 
