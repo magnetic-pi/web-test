@@ -1,4 +1,4 @@
-from tests import *
+#from tests import *
 import unittest
 from threading import Thread
 from time import sleep

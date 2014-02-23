@@ -48,19 +48,17 @@ class RegisterTest (unittest.TestCase):
         wait.until(EC.presence_of_element_located((By.ID, 'choose-theme')))
         theme = self.driver.find_element_by_xpath(
             "//ul[@id='w-theme-list']/li[2]/div/img")
-            # print theme
         hover = ActionChains(self.driver).move_to_element(theme).perform()
-            # print hover
         wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//li[2]/div/div/div/button'))).click()
-        #sel_ent = self.driver.find_element_by_xpath("//ul[@id='w-theme-list']/li[2]/div/div/div/button")
-        # sel_ent.click()
         wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//div[90]/div/div/div/div[2]/div/div/div[2]/form/div/div/input'))).click()
+            (By.XPATH, '//div[90]/div/div/div/div[2]/div/div/div[2]/form/div/div/input')
+            )).click()
         DomainName = self.driver.find_element_by_id('weeblyDomain')
         DomainName.send_keys(self.domain)
         wait.until(EC.element_to_be_clickable(
-            (By.XPATH, "//a[@onclick='domainChoiceContinue(); return done();']"))).click()
+            (By.XPATH, "//a[@onclick='domainChoiceContinue(); return done();']")
+            )).click()
         wait.until(EC.element_to_be_clickable(
             (By.ID, 'planning-info-continue'))).click()
         wait.until(EC.element_to_be_clickable(
