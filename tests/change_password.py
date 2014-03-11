@@ -30,7 +30,6 @@ class ChangePassword(unittest.TestCase):
         print "Changing Password"
         # print "register"
         wait = WebDriverWait(self.driver, self.waitTime)
-
         self.driver.get(self.url)
         wait.until(EC.element_to_be_clickable((By.ID, 'login-button'))).click()
         wait.until(
@@ -41,26 +40,49 @@ class ChangePassword(unittest.TestCase):
         Username.send_keys(self.email)
         Password = self.driver.find_element_by_id('weebly-password')
         Password.send_keys(self.password)
-	try:
+        try:
             wait.until(EC.element_to_be_clickable(
                 (By.XPATH, "//form[@id='weebly-login']/p[4]/input"))).click()
             wait.until(
                 EC.element_to_be_clickable((By.ID, 'site-types-never'))).click()
-            self.driver.find_element_by_xpath("//div[@id='categorize-sites']/div[2]/div[3]/a[2]/span").click()
-	    print "Logged In"
+            self.driver.find_element_by_xpath(
+                "//div[@id='categorize-sites']/div[2]/div[3]/a[2]/span").click()
+            print "Logged In"
         except:
             print "The elements do not exist"
-        self.driver.find_element_by_xpath("//a[contains(text(),'Account')]").click()
+        self.driver.find_element_by_xpath(
+            "//a[contains(text(),'Account')]").click()
         self.driver.find_element_by_link_text("change").click()
         self.driver.find_element_by_id("new-password").clear()
-        self.driver.find_element_by_id("new-password").send_keys(self.reset_pass)
+        self.driver.find_element_by_id(
+            "new-password").send_keys(self.reset_pass)
         self.driver.find_element_by_id("repeat-password").clear()
-        self.driver.find_element_by_id("repeat-password").send_keys(self.reset_pass)
-        self.driver.find_element_by_xpath("//a[@onclick=\"changePassword(''); return false;\"]").click()
-
+        self.driver.find_element_by_id(
+            "repeat-password").send_keys(self.reset_pass)
+        self.driver.find_element_by_xpath(
+            "//div[@id='account-change-password']/div[2]/div[3]/a/span").click()
+        self.driver.find_element_by_link_text("Logout").click()
+        self.driver.find_element_by_id("logInButton").click()
+        wait.until(EC.element_to_be_clickable((By.ID, 'login-button'))).click()
         wait.until(
-	    EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))).click()
-
+            EC.element_to_be_clickable((By.ID, 'weebly-username'))).click()
+        wait.until(
+            EC.element_to_be_clickable((By.ID, 'weebly-password'))).click()
+        Username = self.driver.find_element_by_id('weebly-username')
+        Username.send_keys(self.email)
+        Password = self.driver.find_element_by_id('weebly-password')
+        Password.send_keys(self.reset_pass)
+        try:
+            wait.until(EC.element_to_be_clickable(
+                (By.XPATH, "//form[@id='weebly-login']/p[4]/input"))).click()
+            wait.until(
+                EC.element_to_be_clickable((By.ID, 'site-types-never'))).click()
+            self.driver.find_element_by_xpath(
+                "//div[@id='categorize-sites']/div[2]/div[3]/a[2]/span").click()
+            print "Logged In"
+        except:
+            print "The elements do not exist"
+        self.driver.find_element_by_link_text("Logout").click()
 
     def tearDown(self):
         print "The test has ended"

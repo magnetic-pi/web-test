@@ -51,19 +51,21 @@ class RegisterTest (unittest.TestCase):
             "//ul[@id='w-theme-list']/li[2]/div/img")
         wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//ul[@id="w-theme-list"]/li/div/div/div/button'))).click()
-        #wait.until(EC.element_to_be_clickable(
+        # wait.until(EC.element_to_be_clickable(
         #    (By.XPATH, '//ul[@id="w-theme-list"]/li/div/div/div/button').click()
         #    )).click()
         #DomainName = self.driver.find_element_by_id('weeblyDomain')
-        #DomainName.send_keys(self.domain)
+        # DomainName.send_keys(self.domain)
         wait.until(EC.element_to_be_clickable(
             (By.XPATH, "//div[@id='chooseDomainDiv']/div[2]/a/span")
-            ))
-	self.driver.find_element_by_xpath("//div[@id='domainSubdomain']/div/input").click()
+        ))
+        self.driver.find_element_by_xpath(
+            "//div[@id='domainSubdomain']/div/input").click()
         DomainName = self.driver.find_element_by_id('weeblyDomain')
         DomainName.send_keys(self.domain)
-	self.driver.find_element_by_xpath("//div[@id='chooseDomainDiv']/div[2]/a/span").click()
-        #wait.until(EC.element_to_be_clickable(
+        self.driver.find_element_by_xpath(
+            "//div[@id='chooseDomainDiv']/div[2]/a/span").click()
+        # wait.until(EC.element_to_be_clickable(
         #    (By.XPATH, "//div[@id='chooseDomainDiv']/div[2]/a/span")
         #    )).click()
         wait.until(EC.element_to_be_clickable(
