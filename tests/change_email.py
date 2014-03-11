@@ -8,7 +8,9 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 import definitions.exist_user_settings
 import definitions.test_settings
-import unittest, time, re
+import unittest
+import time
+import re
 
 
 class ChangeEmail(unittest.TestCase):
@@ -52,23 +54,36 @@ class ChangeEmail(unittest.TestCase):
             print "The elements do not exist"
         self.driver.find_element_by_xpath(
             "//a[contains(text(),'Account')]").click()
-        try: self.assertEqual(self.email, self.driver.find_element_by_id("current-email").text)
-        except AssertionError as e: self.verificationErrors.append(str(e))
-        self.driver.find_element_by_xpath("(//a[contains(text(),'change')])[2]").click()
+        try:
+            self.assertEqual(
+                self.email, self.driver.find_element_by_id("current-email").text)
+        except AssertionError as e:
+            self.verificationErrors.append(str(e))
+        self.driver.find_element_by_xpath(
+            "(//a[contains(text(),'change')])[2]").click()
         self.driver.find_element_by_id("new-email").clear()
         self.driver.find_element_by_id("new-email").send_keys(self.reset_email)
-        self.driver.find_element_by_xpath("//div[@id='account-change-email']/div[2]/div[2]/a/span").click()
-        try: self.assertTrue(self.is_element_present(By.ID, "current-email"))
-        except AssertionError as e: self.verificationErrors.append(str(e))
+        self.driver.find_element_by_xpath(
+            "//div[@id='account-change-email']/div[2]/div[2]/a/span").click()
+        try:
+            self.assertTrue(self.is_element_present(By.ID, "current-email"))
+        except AssertionError as e:
+            self.verificationErrors.append(str(e))
         for i in range(60):
             try:
-                if self.reset_email == self.driver.find_element_by_id("current-email").text: break
-            except: pass
+                if self.reset_email == self.driver.find_element_by_id("current-email").text:
+                    break
+            except:
+                pass
             time.sleep(1)
-        else: self.fail("time out")
-        try: self.assertEqual(self.reset_email, self.driver.find_element_by_id("current-email").text)
-        except AssertionError as e: self.verificationErrors.append(str(e))
-	self.driver.find_element_by_link_text("Logout").click()
+        else:
+            self.fail("time out")
+        try:
+            self.assertEqual(
+                self.reset_email, self.driver.find_element_by_id("current-email").text)
+        except AssertionError as e:
+            self.verificationErrors.append(str(e))
+        self.driver.find_element_by_link_text("Logout").click()
         self.driver.find_element_by_id("logInButton").click()
         wait.until(EC.element_to_be_clickable((By.ID, 'login-button'))).click()
         wait.until(
@@ -92,8 +107,10 @@ class ChangeEmail(unittest.TestCase):
         self.driver.find_element_by_link_text("Logout").click()
 
     def is_element_present(self, how, what):
-        try: self.driver.find_element(by=how, value=what)
-        except NoSuchElementException, e: return False
+        try:
+            self.driver.find_element(by=how, value=what)
+        except NoSuchElementException, e:
+            return False
         return True
 
     def tearDown(self):

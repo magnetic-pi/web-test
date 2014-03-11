@@ -26,7 +26,7 @@ class ChangePassword(unittest.TestCase):
         print self.url
         print self.username
 
-    def testChangePW(self):
+    def test_pw_change(self):
         print "Changing Password"
         # print "register"
         wait = WebDriverWait(self.driver, self.waitTime)

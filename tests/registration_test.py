@@ -25,7 +25,7 @@ class RegisterTest (unittest.TestCase):
         # print self.url
         # print self.username
 
-    def test_Register(self):
+    def test_registration(self):
         print "Registration test is commencing"
         # print "register"
         wait = WebDriverWait(self.driver, self.waitTime)
