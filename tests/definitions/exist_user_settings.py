@@ -20,4 +20,4 @@ sel_domain = "inttesting%d" % count
 reset_pw = "testing"
 reset_pw_conf = "testing"
 
-email2 = 'weqatester-reset%d@weebly.com' % count
+reset_email = 'weqatester-reset%d@weebly.com' % count
