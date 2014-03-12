@@ -43,12 +43,10 @@ class LoginSuccessTest(unittest.TestCase):
         try:
             wait.until(EC.element_to_be_clickable(
                 (By.XPATH, "//form[@id='weebly-login']/p[4]/input"))).click()
-            wait.until(
-                EC.element_to_be_clickable((By.ID, 'site-types-never'))).click()
         except:
             print "The elements do not exist"
-            wait.until(
-                EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))).click()
+        wait.until(
+            EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))).click()
 
     def tearDown(self):
         print "The test has ended"
