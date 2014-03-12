@@ -4,7 +4,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver import ActionChains
+#from selenium.webdriver.common.action_chains import ActionChains
 import definitions.exist_user_settings
 import definitions.test_settings
 import unittest, time
@@ -45,16 +46,19 @@ class CreateSiteTest (unittest.TestCase):
         except:
             print "The elements do not exist"
 	print "Clicking create site button."
-	wait.until(EC.element_to_be_clickable((By.ID, 'create-site-button'))).click()
+	time.sleep( 3 )
+	#wait.until(EC.element_to_be_clickable((By.ID, 'create-site-button'))).click()
+	wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Add Site'))).click()
 	print "Clicked create site button."
-	wait.until(EC.presence_of_element_located((By.ID, 'choose-theme')))
+	#wait.until(EC.presence_of_element_located((By.ID, 'choose-theme')))
+	#wait.until(EC.element_to_be_clickable((By.ID, 'create-site-button'))).click()
 	print "Selecting site theme of: First Theme"
         wait.until(EC.presence_of_element_located((By.ID, 'choose-theme')))
         theme = self.driver.find_element_by_xpath(
             "//ul[@id='w-theme-list']/li[2]/div/img")
         wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//ul[@id="w-theme-list"]/li/div/div/div/button'))).click()
-        ##hover = ActionChains(self.driver).move_to_element(theme).perform()
+        #hover = ActionChains(self.driver).move_to_element(theme).perform()
         wait.until(EC.element_to_be_clickable(
             (By.XPATH, "//div[@id='chooseDomainDiv']/div[2]/a/span")
         ))
@@ -65,7 +69,23 @@ class CreateSiteTest (unittest.TestCase):
         self.driver.find_element_by_xpath(
             "//div[@id='chooseDomainDiv']/div[2]/a/span").click()
         
-        #wait.until(EC.element_to_be_clickable(
+	print "Finding title from editor starting drag and drop"
+	self.driver.find_element_by_css_selector("div.title-box").click()
+	title = self.driver.find_element_by_xpath("//ul[@id='anonymous_element_7']/li/div[2]")
+        print title
+	#title_target = self.driver.find_element_by_id("empty-message-inner")
+	self.driver.find_element_by_id("empty-message-inner").click()
+	title_target = self.driver.find_element_by_xpath("//div[@id='empty-message-inner']")
+        print title_target
+	action_chains = ActionChains(self.driver)
+	#action_chains.drag_and_drop(title, title_target)
+	self.driver.find_element_by_id("empty-message-inner").click()
+	action_chains.drag_and_drop(title, title_target).perform()
+	print "Drag and drop sould now be complete."
+	time.sleep( 10 )
+	self.driver.find_element_by_xpath("//li[2]/div[2]").click()
+	print "Drag and drop sould now be complete."
+	#wait.until(EC.element_to_be_clickable(
         #    (By.XPATH, "//li[@id='more-drop-button']/a/span"))).click()
         #wait.until(EC.element_to_be_clickable(
         #    (By.LINK_TEXT, "Exit Editor"))).click()
