@@ -26,8 +26,7 @@ class FailLoginTest(unittest.TestCase):
         print self.username
 
     def test_fail_login(self):
-        print "Login and Logout Test"
-        # print "register"
+        print "Starting Login and Logout Test"
         wait = WebDriverWait(self.driver, self.waitTime)
 
         self.driver.get(self.url)

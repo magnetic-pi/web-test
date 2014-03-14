@@ -12,7 +12,7 @@ import unittest
 import time
 
 
-class CreateSiteTest (unittest.TestCase):
+class CreateStoreTest (unittest.TestCase):
 
     def setUp(self):
         self.username = definitions.exist_user_settings.username
@@ -22,13 +22,11 @@ class CreateSiteTest (unittest.TestCase):
         self.driver = definitions.test_settings.driver
         self.url = definitions.test_settings.baseUrl
         self.waitTime = definitions.test_settings.waitTime
-        action_chains = ActionChains(self.driver)
         print self.email
         print self.password
 
-    def test_create_site(self):
+    def test_create_store(self):
         print "Create site test is commencing."
-        # print "register"
         wait = WebDriverWait(self.driver, self.waitTime)
         self.driver.get(self.url)
         print "Starting logging in."
@@ -47,25 +45,26 @@ class CreateSiteTest (unittest.TestCase):
                 (By.XPATH, "//form[@id='weebly-login']/p[4]/input"))).click()
         except:
             print "The elements do not exist"
-        # time.sleep(2)
 
         print "Clicking create site button."
-        # time.sleep(5)
         wait.until(EC.element_to_be_clickable((By.ID, 'create-site-button'))).click()
         wait.until(EC.element_to_be_clickable((By.ID, 'create-site-button'))).click()
         print "Clicked create site button."
         time.sleep(2)
 
         print "Selecting site theme of: First Theme"
-        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "img[alt=\"Light\"]")))
+        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "img[alt=\"Lucent\"]")))
         wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "button.btn.btn-primary")))
-        hover_element = self.driver.find_element_by_xpath("//ul[@id='w-theme-list']/li/div/img")
+        hover_element = self.driver.find_element_by_css_selector("img[alt=\"Lucent\"]")
         action_chains = ActionChains(self.driver)
         action_chains.move_to_element(hover_element).perform()
         theme = self.driver.find_element_by_xpath(
             "//ul[@id='w-theme-list']/li[2]/div/img")
         wait.until(EC.element_to_be_clickable(
-            (By.CSS_SELECTOR, "button.btn.btn-primary"))).click()
+            (By.XPATH, "//ul[@id='w-theme-list']/li[2]/div/div/div/button"))).click()
+        print "Theme Selected"
+
+        print "Selecting Domain"
         wait.until(EC.element_to_be_clickable(
             (By.XPATH, "//div[@id='chooseDomainDiv']/div[2]/a/span")
         ))
@@ -81,17 +80,13 @@ class CreateSiteTest (unittest.TestCase):
         time.sleep(1)
         self.driver.find_element_by_id("wsite-title").clear()
         time.sleep(1)
-        self.driver.find_element_by_id("wsite-title").send_keys("Jon's Site")
+        self.driver.find_element_by_id("wsite-title").send_keys("Jon's Store")
         time.sleep(1)
-        # self.driver.find_element_by_id("main").click()
 
         print "Finding title from toolbar starting drag and drop"
         self.driver.find_element_by_css_selector("div.title-box").click()
-        title = self.driver.find_element_by_xpath(
-            "//ul[@id='anonymous_element_7']/li/div[2]")
-        self.driver.find_element_by_id("main").click()
+        title = self.driver.find_element_by_css_selector("div.title-box")
         title_target = self.driver.find_element_by_id("empty-message-inner")
-        self.driver.find_element_by_id("main").click()
         drag_title = ActionChains(self.driver)
         drag_title.drag_and_drop(title, title_target).perform()
         time.sleep(1)
@@ -103,7 +98,6 @@ class CreateSiteTest (unittest.TestCase):
         time.sleep(1)
         self.driver.find_element_by_xpath("//li[2]/div[2]").click()
         time.sleep(1)
-
         print "Drag and drop title sould now be complete."
 
         time.sleep(2)
@@ -119,21 +113,61 @@ class CreateSiteTest (unittest.TestCase):
         text_target = self.driver.find_element_by_id("secondlistParent")
         drag_text = ActionChains(self.driver)
         drag_text.drag_and_drop(text, text_target).perform()
-        time.sleep(1)
+        time.sleep(2)
         self.driver.find_element_by_xpath("//li[2]/div[2]/div/div").click()
-        time.sleep(1)
+        time.sleep(2)
         self.driver.find_element_by_xpath("//li[2]/div[2]/div/div").clear()
-        time.sleep(1)
+        time.sleep(2)
         self.driver.find_element_by_xpath("//li[2]/div[2]/div/div").send_keys("Drag and drop text area testing text input.")
-        time.sleep(3)
-        self.driver.find_element_by_xpath("//li[2]/div[2]").click()
+        time.sleep(2)
+        self.driver.find_element_by_id("secondlist").click()
+        time.sleep(5)
         print "Drag and drop sould now be complete."
-        # wait.until(EC.element_to_be_clickable(
-        #    (By.XPATH, "//li[@id='more-drop-button']/a/span"))).click()
-        # wait.until(EC.element_to_be_clickable(
-        #    (By.LINK_TEXT, "Exit Editor"))).click()
-        # wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))
-        #           ).click()
+
+        print "Drag and drop reorder."
+        try:
+            self.assertTrue(self.is_element_present(By.XPATH, "//li[2]/div[2]/div/div"))
+        except AssertionError as e:
+            self.verificationErrors.append(str(e))
+
+        print "Get first item on list location."
+        hover_element1 = self.driver.find_element_by_xpath("//h2")
+        hover_action1 = ActionChains(self.driver)
+        hover_action1.move_to_element(hover_element1).perform()
+        time.sleep(4)
+        get_location = self.driver.find_element_by_xpath("//li/div/div[2]/div")
+        location = get_location.location
+        print "The location of the first item on the ul is %s" % location
+
+        print "Drag and drop the second item on the list to the first items location."
+        hover_element2 = self.driver.find_element_by_xpath("//li[2]/div[2]/div/div")
+        hover_action2 = ActionChains(self.driver)
+        hover_action2.move_to_element(hover_element2).perform()
+        # self.driver.find_element_by_xpath("//li[2]/div[2]").click()
+        time.sleep(4)
+        drag_second_spot = self.driver.find_element_by_xpath("//li[2]/div/div[2]/div")
+        drag_first_spot = self.driver.find_element_by_xpath("//h2")
+        drag_item = ActionChains(self.driver)
+        drag_item.click_and_hold(drag_second_spot)
+        drag_item.move_by_offset(36, 790)
+        drag_item.release("secondlistParent")
+        drag_item.perform()
+        #drag_item.drag_and_drop_by_offset(drag_second_spot, 36, 803).perform()
+        time.sleep(10)
+        #drag_item.drag_and_drop(drag_second_spot, location).perform()
+        print "Drag and drop should now be complete."
+
+        print "Exit the editor."
+        wait.until(EC.element_to_be_clickable(
+            (By.XPATH, "//li[@id='more-drop-button']/a/span"))).click()
+        wait.until(EC.element_to_be_clickable(
+            (By.LINK_TEXT, "Exit Editor"))).click()
+        print "Exited the editor"
+
+        print "Log out"
+        wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Logout"))
+                   ).click()
+        print "Logged out!"
 
     def is_element_present(self, how, what):
         try:
