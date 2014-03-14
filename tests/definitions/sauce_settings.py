@@ -10,6 +10,17 @@ import os
 baseUrl = "http://www.weebly.com"
 waitTime = 20
 
+desired_capabilities = webdriver.DesiredCapabilities.FIREFOX
+desired_capabilities['version'] = '27'
+desired_capabilities['platform'] = 'Linux'
+desired_capabilities['name'] = 'Testing Weebly Registration.'
+
+driver = webdriver.Remote(
+    desired_capabilities=desired_capabilities,
+    command_executor="http://jcostellowb:bb9e0f6a-b882-4368-86d3-46288eb438df@ondemand.saucelabs.com:80/wd/hub"
+)
+
+
 # This is required for testing with Chrome.
 #chrome_driver = './definitions/chromedriver_linux'
 #chrome_driver = './definitions/chromedriver_mac'

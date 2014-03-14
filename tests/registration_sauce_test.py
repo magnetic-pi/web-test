@@ -14,20 +14,12 @@ import definitions.sauce_settings
 class RegisterTest(unittest.TestCase):
 
     def setUp(self):
-        desired_capabilities = webdriver.DesiredCapabilities.FIREFOX
-        desired_capabilities['version'] = '27'
-        desired_capabilities['platform'] = 'Linux'
-        desired_capabilities['name'] = 'Testing Weebly Registration.'
-
-        self.driver = webdriver.Remote(
-            desired_capabilities=desired_capabilities,
-            command_executor="http://jcostellowb:bb9e0f6a-b882-4368-86d3-46288eb438df@ondemand.saucelabs.com:80/wd/hub"
-        )
 	self.waitTime = definitions.sauce_settings.waitTime
         self.username = definitions.new_user_settings.username
         self.email = definitions.new_user_settings.email
         self.password = definitions.new_user_settings.password
         self.domain = definitions.new_user_settings.sel_domain
+	self.driver = definitions.sauce_settings.driver
         self.url = definitions.sauce_settings.baseUrl
         #print self.driver
         print self.url
