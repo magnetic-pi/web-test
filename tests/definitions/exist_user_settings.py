@@ -16,6 +16,9 @@ username = 'Troy Mcclure'
 email = 'weqatester%d@weebly.com' % count
 password = 'W33bly!-13'
 sel_domain = "inttesting%d" % count
+store_domain = "store%d" % count
+site_domain = "site%d" % count
+
 
 reset_pw = "testing"
 reset_pw_conf = "testing"

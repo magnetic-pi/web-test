@@ -9,6 +9,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import definitions.new_user_settings
 import definitions.test_settings
 import unittest
+import time
 
 
 class RegisterTest (unittest.TestCase):
@@ -38,15 +39,26 @@ class RegisterTest (unittest.TestCase):
         print "Entered a username of %s on the landing page" % self.username
         Useremail = self.driver.find_element_by_id('weebly-email')
         Useremail.send_keys(self.email)
+
         print "Entered email as %s on the landing page." % self.email
         Password = self.driver.find_element_by_id('weebly-new-password')
         Password.send_keys(self.password)
+
         print "Entered a password of %s on the landing page." % self.password
         submitReg = self.driver.find_element_by_id('signup-button-default')
         submitReg.click()
+
+        print "A/B Testing site type if it appears."
+        time.sleep(2)
+        try:
+            self.driver.find_element_by_xpath("//div[2]/div/div/div").click()
+        except:
+            print "No A/B test appeared."
+
+        time.sleep(2)
         print "Choosing the first theme on the page."
         wait.until(EC.presence_of_element_located((By.ID, 'choose-theme')))
-        theme = self.driver.find_element_by_xpath(
+        self.driver.find_element_by_xpath(
             "//ul[@id='w-theme-list']/li[2]/div/img")
         wait.until(EC.element_to_be_clickable(
             (By.XPATH, '//ul[@id="w-theme-list"]/li/div/div/div/button'))).click()
