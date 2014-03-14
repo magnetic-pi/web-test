@@ -2,16 +2,13 @@ import unittest
 from time import sleep
 import os
 import glob
+from subprocess import Popen
 
-# This file should be ran if you are using sauce labs to test in parallel.
-
+processes = []
 os.chdir("./tests")
-fileslist = glob.glob('*_test.py')
-j = 0
-for i in fileslist:
-    fileslist[j] = i.rstrip(".py")
-    j += 1
-# print fileslist
-
-for f in fileslist:
-    unittest.main(module='tests.' + f)
+tests = glob.glob('*sauce_test.py')
+for test in tests:
+    processes.append(Popen('python %s' % test, shell=True))
+ 
+for process in processes:
+    process.wait()
