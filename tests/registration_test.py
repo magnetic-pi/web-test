@@ -8,7 +8,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 import definitions.new_user_settings
 import definitions.test_settings
-import unittest, time
+import unittest
+import time
 
 
 class RegisterTest(unittest.TestCase):

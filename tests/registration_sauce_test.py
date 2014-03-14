@@ -1,4 +1,5 @@
-import unittest, time
+import unittest
+import time
 from selenium import webdriver
 from time import sleep
 from time import gmtime, strftime
@@ -14,16 +15,16 @@ import definitions.sauce_settings
 class RegisterTest(unittest.TestCase):
 
     def setUp(self):
-	self.waitTime = definitions.sauce_settings.waitTime
+        self.waitTime = definitions.sauce_settings.waitTime
         self.username = definitions.new_user_settings.username
         self.email = definitions.new_user_settings.email
         self.password = definitions.new_user_settings.password
         self.domain = definitions.new_user_settings.sel_domain
-	self.driver = definitions.sauce_settings.driver
+        self.driver = definitions.sauce_settings.driver
         self.url = definitions.sauce_settings.baseUrl
-        #print self.driver
+        # print self.driver
         print self.url
-        #print self.username
+        # print self.username
 
     def test_registration(self):
         print "Registration test is commencing"

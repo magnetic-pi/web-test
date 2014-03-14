@@ -8,7 +8,8 @@ from selenium.webdriver import ActionChains
 #from selenium.webdriver.common.action_chains import ActionChains
 import definitions.exist_user_settings
 import definitions.test_settings
-import unittest, time
+import unittest
+import time
 
 
 class DeleteSiteTest(unittest.TestCase):
@@ -71,7 +72,7 @@ class DeleteSiteTest(unittest.TestCase):
             self.accept_next_alert = True
 
     def tearDown(self):
-	print "The test has ended."
+        print "The test has ended."
         self.driver.quit()
         self.assertEqual([], self.verificationErrors)
 

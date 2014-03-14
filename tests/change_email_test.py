@@ -8,7 +8,9 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 import definitions.exist_user_settings
 import definitions.test_settings
-import unittest, time, re
+import unittest
+import time
+import re
 
 
 class ChangeEmail(unittest.TestCase):

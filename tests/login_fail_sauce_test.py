@@ -20,7 +20,7 @@ class FailLoginTest(unittest.TestCase):
         self.domain = definitions.exist_user_settings.sel_domain
         self.url = definitions.sauce_settings.baseUrl
         self.waitTime = definitions.sauce_settings.waitTime
-	desired_capabilities = webdriver.DesiredCapabilities.FIREFOX
+        desired_capabilities = webdriver.DesiredCapabilities.FIREFOX
         desired_capabilities['version'] = '27'
         desired_capabilities['platform'] = 'Linux'
         desired_capabilities['name'] = 'Testing Weebly Failed Login.'
