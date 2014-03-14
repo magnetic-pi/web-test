@@ -8,9 +8,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 import definitions.exist_user_settings
 import definitions.test_settings
-import unittest
-import time
-import re
+import unittest, time, re
 
 
 class ChangeEmail(unittest.TestCase):
@@ -111,3 +109,6 @@ class ChangeEmail(unittest.TestCase):
     def tearDown(self):
         print "The test has ended"
         self.driver.quit()
+
+if __name__ == '__main__':
+    unittest.main()

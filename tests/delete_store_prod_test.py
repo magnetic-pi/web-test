@@ -8,11 +8,10 @@ from selenium.webdriver import ActionChains
 #from selenium.webdriver.common.action_chains import ActionChains
 import definitions.exist_user_settings
 import definitions.test_settings
-import unittest
-import time
+import unittest, time
 
 
-class DelStoreItemTest (unittest.TestCase):
+class DelStoreItemTest(unittest.TestCase):
 
     def setUp(self):
         self.username = definitions.exist_user_settings.username
@@ -92,9 +91,9 @@ class DelStoreItemTest (unittest.TestCase):
             self.accept_next_alert = True
 
     def tearDown(self):
-        self.driver.quit()
+        print "The test has ended."
+	self.driver.quit()
         self.assertEqual([], self.verificationErrors)
 
-    def tearDown(self):
-        print "The test has ended"
-        self.driver.quit()
+if __name__ == '__main__':
+    unittest.main()

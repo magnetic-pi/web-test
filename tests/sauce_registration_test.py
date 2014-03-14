@@ -1,3 +1,4 @@
+import unittest, time
 from selenium import webdriver
 from time import sleep
 from time import gmtime, strftime
@@ -6,24 +7,31 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
-import definitions.new_user_settings
-import definitions.test_settings
-import unittest, time
+from definitions.new_user_settings import username, email, password, sel_domain
+from definitions.test_settings import baseUrl
 
 
 class RegisterTest(unittest.TestCase):
 
     def setUp(self):
+        desired_capabilities = webdriver.DesiredCapabilities.IPHONE
+        desired_capabilities['version'] = '5.0'
+        desired_capabilities['platform'] = 'MAC'
+        desired_capabilities['name'] = 'Testing Selenium 2 in Python at Sauce'
+
+        self.driver = webdriver.Remote(
+            desired_capabilities=desired_capabilities,
+            command_executor="http://jcostellowb:bb9e0f6a-b882-4368-86d3-46288eb438df@ondemand.saucelabs.com:80/wd/hub"
+        )
+	self.waitTime = self.driver.implicitly_wait(30)
         self.username = definitions.new_user_settings.username
         self.email = definitions.new_user_settings.email
         self.password = definitions.new_user_settings.password
         self.domain = definitions.new_user_settings.sel_domain
-        self.driver = definitions.test_settings.driver
         self.url = definitions.test_settings.baseUrl
-        self.waitTime = definitions.test_settings.waitTime
-        # print self.driver
-        # print self.url
-        # print self.username
+        print self.driver
+        print self.url
+        print self.username
 
     def test_registration(self):
         print "Registration test is commencing"

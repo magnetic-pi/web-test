@@ -87,3 +87,6 @@ class ChangePassword(unittest.TestCase):
     def tearDown(self):
         print "The test has ended"
         self.driver.quit()
+
+if __name__ == '__main__':
+    unittest.main()
